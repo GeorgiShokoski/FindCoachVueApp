@@ -77,11 +77,14 @@ export default{
                     await this.$store.dispatch('login', {
                     email: this.email,
                     password: this.password
-                })}catch(error){
+                })
+                const redirectUrl = '/' + (this.$route.query.redirect || 'coaches')
+                this.$router.replace(redirectUrl)
+            }
+                catch(error){
                     this.error = error.message
                 }
                 this.isLoading = false
-                this.$router.replace('/coaches')
             }
             
         },
